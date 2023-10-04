@@ -30,6 +30,8 @@
 
 #include <actionlib_msgs/GoalID.h>
 
+#include <move_base_msgs/MoveBaseActionResult.h>
+
 
 
 // #include <darknet_ros_msgs/BoundingBoxes.h>
@@ -106,6 +108,13 @@ struct TRACKING_DETECTION_TIMEOUT
     double time_last_in;
 };
 
+struct SET_2dnav
+{
+    double euler_yaw;
+    double goal_result;
+
+};
+
 class Scout{
     private:
         ros::NodeHandle nh;
@@ -133,6 +142,12 @@ class Scout{
         ros::Subscriber sub_2d_nav_goal_point;
         ros::Publisher pub_2d_nav_goal_point;
 
+        //=============================
+
+        ros::Subscriber sub_movebase_result;
+
+        ros::Publisher pub_goal_reached;
+
 
         // ros::ServiceClient client_arming;
         // ros::ServiceClient client_setMode;
@@ -143,9 +158,12 @@ class Scout{
         
         int activate_tracking = TRACKING_DEACTIVATE;
 
-        int check_num = 1;
+        int check_num = 0;
 
         bool is_tracking = false;
+        
+        bool yaw_check = true;
+
 
         geometry_msgs::PoseStamped set_localPose;
         nav_msgs::Odometry current_pose;
@@ -157,6 +175,12 @@ class Scout{
 
         geometry_msgs::PoseStamped save_goalpoint;
 
+        geometry_msgs::PoseStamped first_goalpoint;
+        
+        geometry_msgs::PoseStamped second_goalpoint;
+
+        move_base_msgs::MoveBaseActionResult movebase_goal_result;
+
         // darknet_ros_msgs::BoundingBox Box_info;
 
 
@@ -166,6 +190,8 @@ class Scout{
         // TRACKING_DATA tracking_data = {};
         // TRACKING_VALUE_TIMEOUT tracking_value_timeout = {};
         TRACKING_DETECTION_TIMEOUT tracking_detection_timeout = {};
+
+        SET_2dnav set2dnav = {};
 
         ros::Rate rate = ros::Rate(10.0);
 
@@ -210,6 +236,9 @@ class Scout{
 
         void Hovering();
 
+        void Set2dnavliner();
+        void Set2dnavyaw();
+
         // void Change_ControlMode(bool requested_move);
         // void Change_TrackingMode(bool requested_mode);
 
@@ -222,6 +251,8 @@ class Scout{
         void Callback_tracking(const geometry_msgs::TwistStamped::ConstPtr& tracking_msg);
         void Callback_request(const std_msgs::String::ConstPtr& request_msg);
         void Callback_goalpoint(const geometry_msgs::PoseStamped::ConstPtr& navgoalpoint_msg);
+
+        void Callback_goalpoint_result(const move_base_msgs::MoveBaseActionResult::ConstPtr& movebase_goal_result_msg);
 
 
         //============= darknet

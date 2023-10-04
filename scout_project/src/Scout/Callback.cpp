@@ -124,6 +124,11 @@ void Scout::Callback_goalpoint(const geometry_msgs::PoseStamped::ConstPtr& navgo
 
 }
 
+void Scout::Callback_goalpoint_result(const move_base_msgs::MoveBaseActionResult::ConstPtr& movebase_goal_result_msg)
+{
+    movebase_goal_result= *movebase_goal_result_msg;
+}
+
 // void Scout::_cb_box(const darknet_ros_msgs::BoundingBoxes::ConstPtr &box_msg)
 // {
 //     darknet_ros_msgs::BoundingBox Box = box_msg->bounding_boxes[0];

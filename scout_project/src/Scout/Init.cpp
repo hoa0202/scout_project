@@ -20,6 +20,10 @@ Scout::Scout(const ros::NodeHandle& _nodeHandle):
 
     pub_request(nh.advertise<std_msgs::String>("scout/cmd/request", 10)),
     pub_respond(nh.advertise<std_msgs::Header>("scout/cmd/respond", 10)),
+
+    pub_goal_reached(nh.advertise<std_msgs::String>("/chatter", 10)),
+
+    sub_movebase_result(nh.subscribe<move_base_msgs::MoveBaseActionResult>("/move_base/result", 10, &Scout::Callback_goalpoint_result, this)),
     
     // client_arming(nh.serviceClient<mavros_msgs::CommandBool>("mavros/cmd/arming")),
     // client_setMode(nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode"))

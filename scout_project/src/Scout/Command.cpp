@@ -420,3 +420,20 @@ void Scout::Shutdown()
 
 //     nh.setParam(param_tracking, requested_mode);
 // }
+
+
+void Scout::Set2dnavyaw()
+{
+
+    double *current_RPY = quaternion_to_euler(save_goalpoint.pose.orientation.x, save_goalpoint.pose.orientation.y,
+                                              save_goalpoint.pose.orientation.z, save_goalpoint.pose.orientation.w);
+
+    if (current_RPY[2] < 0)
+        current_RPY[2] = current_RPY[2] + M_PI * 2;
+    else if (current_RPY[2] > M_PI * 2)
+        current_RPY[2] = current_RPY[2] - M_PI * 2;
+
+    set2dnav.euler_yaw = current_RPY[2];
+
+    delete[] current_RPY;
+}

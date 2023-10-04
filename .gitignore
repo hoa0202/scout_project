@@ -1,3 +1,2 @@
 darknet_ros/
-.gitignore/
-CMakeLists.txt
+.gitignore
