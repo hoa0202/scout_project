@@ -24,7 +24,7 @@ Scout::Scout(const ros::NodeHandle& _nodeHandle):
     // client_arming(nh.serviceClient<mavros_msgs::CommandBool>("mavros/cmd/arming")),
     // client_setMode(nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode"))
 
-    box_sub(nh.subscribe<darknet_ros_msgs::BoundingBoxes>("darknet_ros/bounding_boxes", 10, &Scout::_cb_box, this)),
+    // box_sub(nh.subscribe<darknet_ros_msgs::BoundingBoxes>("darknet_ros/bounding_boxes", 10, &Scout::_cb_box, this)),
 
     pub_move_base_cancel(nh.advertise<actionlib_msgs::GoalID>("/move_base/cancel",10))
 

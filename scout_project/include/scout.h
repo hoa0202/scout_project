@@ -32,7 +32,7 @@
 
 
 
-#include <darknet_ros_msgs/BoundingBoxes.h>
+// #include <darknet_ros_msgs/BoundingBoxes.h>
 
 
 #define POSITION_MODE 1  // Move by setpoint_position
@@ -157,7 +157,7 @@ class Scout{
 
         geometry_msgs::PoseStamped save_goalpoint;
 
-        darknet_ros_msgs::BoundingBox Box_info;
+        // darknet_ros_msgs::BoundingBox Box_info;
 
 
         CMD_INFO cmd_info = {};
@@ -225,7 +225,7 @@ class Scout{
 
 
         //============= darknet
-        void _cb_box(const darknet_ros_msgs::BoundingBoxes::ConstPtr& box_msg);
+        // void _cb_box(const darknet_ros_msgs::BoundingBoxes::ConstPtr& box_msg);
         //=============
 
     public:

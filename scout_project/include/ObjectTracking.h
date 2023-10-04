@@ -14,7 +14,7 @@
 #include <sensor_msgs/image_encodings.h>
 // #include <librealsense2/rsutil.h>
 
-#include <darknet_ros_msgs/BoundingBoxes.h>
+// #include <darknet_ros_msgs/BoundingBoxes.h>
 #include <vision_msgs/Detection2DArray.h>
 
 #include <Convert.h>
@@ -57,7 +57,7 @@ struct TRACKING_SPEED
 struct BOUNDING_BOX
 {
     bool check_box; 
-    darknet_ros_msgs::BoundingBox current_darknetBox;
+    // darknet_ros_msgs::BoundingBox current_darknetBox;
     vision_msgs::Detection2D current_ssdBox;
 
     std::string class_id;
@@ -105,13 +105,13 @@ class ObjectTracking{
 
         void ControlTracking(float distance_x, int center_x, int center_y);
 
-        void cb_Box(const darknet_ros_msgs::BoundingBoxes::ConstPtr& box_msg);
+        // void cb_Box(const darknet_ros_msgs::BoundingBoxes::ConstPtr& box_msg);
         void cb_Box(const vision_msgs::Detection2DArray::ConstPtr& box_msg);
 
         void cb_Image(const sensor_msgs::ImageConstPtr& image_msg, const sensor_msgs::CameraInfoConstPtr& info_msg);
         void cb_Request(const std_msgs::String::ConstPtr& request_msg);
 
-        darknet_ros_msgs::BoundingBox GetBoxHighestProbability(const darknet_ros_msgs::BoundingBoxes::ConstPtr &box_msg);
+        // darknet_ros_msgs::BoundingBox GetBoxHighestProbability(const darknet_ros_msgs::BoundingBoxes::ConstPtr &box_msg);
         vision_msgs::Detection2D GetBoxHighestProbability(const vision_msgs::Detection2DArray::ConstPtr &box_msg);
 
 

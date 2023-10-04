@@ -124,13 +124,13 @@ void Scout::Callback_goalpoint(const geometry_msgs::PoseStamped::ConstPtr& navgo
 
 }
 
-void Scout::_cb_box(const darknet_ros_msgs::BoundingBoxes::ConstPtr &box_msg)
-{
-    darknet_ros_msgs::BoundingBox Box = box_msg->bounding_boxes[0];
+// void Scout::_cb_box(const darknet_ros_msgs::BoundingBoxes::ConstPtr &box_msg)
+// {
+//     darknet_ros_msgs::BoundingBox Box = box_msg->bounding_boxes[0];
 
-    // box_request = ros::Time::now();
-    now = ros::Time::now();
-    Box_info.Class = Box.Class;
-    Box_info.probability = Box.probability;
+//     // box_request = ros::Time::now();
+//     now = ros::Time::now();
+//     Box_info.Class = Box.Class;
+//     Box_info.probability = Box.probability;
     
-}
+// }
